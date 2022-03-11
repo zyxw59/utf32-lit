@@ -1,0 +1,15 @@
+[package]
+name = "utf32-lit"
+authors = ["emily Crandall Fleischman <emilycf@mit.edu>"]
+description = "A macro for creating `&[char]` literals"
+repository = "https://github.com/zyxw59/utf32-lit"
+license = "MIT"
+version = "1.0.0"
+edition = "2021"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote = "1.0.15"
+syn = "1.0.86"
