@@ -12,8 +12,9 @@ use syn::{
 /// let s = utf32!("æbc");
 /// assert_eq!(s, &['æ', 'b', 'c']);
 ///
-/// let s_array = utf32!(&["foo", "bar", "baz"]);
-/// assert_eq!(s_array, &[&['f', 'o', 'o'], &['b', 'a', 'r'], &['b', 'a', 'z']]);
+/// let s_array = utf32!(&["foo", "bubble", "baz"]);
+/// let expected: &[&[char]] = &[&['f', 'o', 'o'], &['b', 'u', 'b', 'b', 'l', 'e'], &['b', 'a', 'z']];
+/// assert_eq!(s_array, expected);
 /// ```
 #[proc_macro]
 pub fn utf32(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
@@ -30,7 +31,7 @@ impl VisitMut for Utf32Replace {
             if let Lit::Str(s) = &expr.lit {
                 let string = s.value();
                 let chars = string.chars();
-                *node = parse_quote_spanned!(s.span()=> &[#(#chars),*]);
+                *node = parse_quote_spanned!(s.span()=> &[#(#chars),*] as &[char]);
             }
         }
         visit_mut::visit_expr_mut(self, node);
