@@ -4,7 +4,7 @@ authors = ["emily Crandall Fleischman <emilycf@mit.edu>"]
 description = "A macro for creating `&[char]` literals"
 repository = "https://github.com/zyxw59/utf32-lit"
 license = "MIT"
-version = "1.2.0"
+version = "1.3.0"
 edition = "2021"
 
 [lib]
@@ -12,4 +12,4 @@ proc-macro = true
 
 [dependencies]
 quote = "1.0.15"
-syn = { version = "1.0.86", features = ["full", "visit-mut"] }
+syn = { version = "2", features = ["full", "visit-mut"] }
